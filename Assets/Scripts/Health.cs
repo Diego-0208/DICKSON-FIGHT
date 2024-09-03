@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; // Necesario para cargar escenas
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -9,8 +10,7 @@ public class Health : MonoBehaviour
     private int currentHealth;
 
     // Evento que se llama cuando el personaje muere
-    public delegate void OnDeath();
-    public event OnDeath onDeath;
+    public UnityEvent OnDeath;
 
     void Start()
     {
@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
     void Die()
     {
         // Llamamos al evento onDeath si hay suscriptores
-        onDeath?.Invoke();
+        OnDeath?.Invoke();
 
         // Aquí puedes añadir la lógica que desees al morir el personaje
         Debug.Log($"{gameObject.name} ha muerto.");
