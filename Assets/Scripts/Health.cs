@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Necesario para cargar escenas
 
 public class Health : MonoBehaviour
 {
@@ -50,8 +51,12 @@ public class Health : MonoBehaviour
         // Llamamos al evento onDeath si hay suscriptores
         onDeath?.Invoke();
 
-        // Aquí puedes añadir la lógica que desees al morir el personaje, como destruir el objeto
+        // Aquí puedes añadir la lógica que desees al morir el personaje
         Debug.Log($"{gameObject.name} ha muerto.");
+
+        // Cargar la escena de Game Over
+        SceneManager.LoadScene("GameOverMenu");
+
         // Destruir el objeto (opcional, dependiendo de la lógica del juego)
         Destroy(gameObject);
     }
@@ -62,3 +67,5 @@ public class Health : MonoBehaviour
         return currentHealth;
     }
 }
+
+
